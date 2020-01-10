@@ -6,4 +6,5 @@ public class Main {
         Aplikacija aplikacija = new Aplikacija();
         aplikacija.zazeni();
     }
+    //Hehe
 }
