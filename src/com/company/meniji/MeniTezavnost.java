@@ -1,10 +1,13 @@
 package com.company.meniji;
 
+import com.company.Aplikacija;
 import com.company.gumbi.MenuButton;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MeniTezavnost extends JPanel {
 
@@ -15,7 +18,12 @@ public class MeniTezavnost extends JPanel {
     MenuButton mojSvet = new MenuButton("MOJ SVET");
     MenuButton nazajTezavnost = new MenuButton("Nazaj");
 
-    public MeniTezavnost() {
+    CardLayout cardLayout;
+    JPanel kartice;
+
+    public MeniTezavnost(CardLayout cardLayout, JPanel kartice) {
+        this.cardLayout = cardLayout;
+        this.kartice = kartice;
         ustvariMeniTezavnost();
     }
 
@@ -26,7 +34,6 @@ public class MeniTezavnost extends JPanel {
         setBorder(new EmptyBorder(10, 200, 30, 200));
 
         //Uredim besedilo
-
         izberiTezavnost.setHorizontalAlignment(SwingConstants.CENTER);
         izberiTezavnost.setFont(new Font("Calibri", Font.BOLD, 30));
 
@@ -37,6 +44,23 @@ public class MeniTezavnost extends JPanel {
         add(planet);
         add(mojSvet);
         add(nazajTezavnost);
+
+        //Action Listeners
+        ActionListener nazajMeniZacetni = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                cardLayout.show(kartice, Aplikacija.MENI_ZACETNI);
+            }
+        };
+        nazajTezavnost.addActionListener(nazajMeniZacetni);
+
+        ActionListener odpriMeniMojSvet = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                cardLayout.show(kartice, Aplikacija.MENI_MOJ_SVET);
+            }
+        };
+        mojSvet.addActionListener(odpriMeniMojSvet);
     }
 
 }

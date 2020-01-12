@@ -11,20 +11,22 @@ import java.awt.*;
 public class Aplikacija {
 
     JFrame okno = new JFrame();
-    JPanel kartice = new JPanel();
-    CardLayout cardLayout = new CardLayout();
+    JPanel kartice = new JPanel(); //panel, na katerega lepim ostale panels ("cards"), npr. meniji
+    CardLayout cardLayout = new CardLayout(); //posebej
 
 
     MeniZacetni meniZacetni = new MeniZacetni(cardLayout, kartice);
     MeniMojSvet meniMojSvet = new MeniMojSvet();
     MeniMedIgro meniMedIgro = new MeniMedIgro();
-    MeniTezavnost meniTezavnost = new MeniTezavnost();
+    MeniTezavnost meniTezavnost = new MeniTezavnost(cardLayout, kartice);
 
-    public static final String MENU_TEZAVNOST = "Meni težavnosti";
+    public static final String MENI_TEZAVNOST = "Meni težavnost";
+    public static final String MENI_ZACETNI = "Meni začetni";
+    public  static final String MENI_MOJ_SVET = "Meni moj svet";
 
     public void zazeni() {
 
-        //Izgled okna
+        //Lastnosti okna
         okno.setTitle("Zajčja prevlada!");
         okno.setSize(1000, 800);
         okno.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -44,9 +46,9 @@ public class Aplikacija {
 
 
         kartice.setLayout(cardLayout);
-        kartice.add(meniZacetni, "Začetni meni");
-        kartice.add(meniTezavnost, MENU_TEZAVNOST);
-        kartice.add(meniMojSvet, "Meni moj svet");
+        kartice.add(meniZacetni, MENI_ZACETNI);
+        kartice.add(meniTezavnost, MENI_TEZAVNOST);
+        kartice.add(meniMojSvet, MENI_MOJ_SVET);
 
         okno.add(kartice);
 

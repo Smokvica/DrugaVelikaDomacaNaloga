@@ -2,7 +2,6 @@ package com.company.meniji;
 
 import com.company.Aplikacija;
 import com.company.gumbi.MenuButton;
-import javafx.application.Application;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -21,7 +20,7 @@ public class MeniZacetni extends JPanel {
     MenuButton pravila = new MenuButton("Pravila igre");
     MenuButton izhodZacetni = new MenuButton("Izhod");
 
-    //Definiram nov CardLayout in JPanel. Konstruktor prejme ta dva objekta iz Aplikacije, ki ga nato enačim s tem oknom. Ker ga definiram tukaj, ga lahko uporabljam v spodnjih metodah.
+    //Definiram nov CardLayout in JPanel in ju nato v konstruktorju enačim s tistima iz classa Aplikacije.
     CardLayout cardLayout;
     JPanel kartice;
 
@@ -29,7 +28,7 @@ public class MeniZacetni extends JPanel {
         this.cardLayout = cardLayout;
         this.kartice = kartice;
         ustvariMeniZacetni();
-    } //konstruktor, da ga lahko uporabim v aplikaciji
+    } //konstruktor, da ta class lahko uporabim v Aplikaciji; prejme cardlayout in panel, da ju lahko uporabljam v spodnji metodi
 
     public void ustvariMeniZacetni() {
         //Uredim layout in robove (do kam so lahko gumbi, labels ipd.)
@@ -53,14 +52,24 @@ public class MeniZacetni extends JPanel {
 
 
         // Action listeners
-        ActionListener pokaziNaslednjoKartico = new ActionListener() {
+
+        ActionListener odpriMeniTezavnost = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                cardLayout.show(kartice, Aplikacija.MENU_TEZAVNOST);
+                cardLayout.show(kartice, Aplikacija.MENI_TEZAVNOST);
             }
         };
+        zacni.addActionListener(odpriMeniTezavnost);
 
-        zacni.addActionListener(pokaziNaslednjoKartico);
+        ActionListener ugasniIgro = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                System.exit(0);
+            }
+        };
+        izhodZacetni.addActionListener(ugasniIgro);
+
+
 
     }
 }
