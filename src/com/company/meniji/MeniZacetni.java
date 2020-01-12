@@ -1,6 +1,8 @@
 package com.company.meniji;
 
+import com.company.Aplikacija;
 import com.company.gumbi.MenuButton;
+import javafx.application.Application;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -19,10 +21,13 @@ public class MeniZacetni extends JPanel {
     MenuButton pravila = new MenuButton("Pravila igre");
     MenuButton izhodZacetni = new MenuButton("Izhod");
 
-    JFrame okno; //Definiram novo okno. Konstruktor prejme JFrame okno iz Aplikacije, ki ga nato enačim s tem oknom. Ker ga definiram tukaj, ga lahko uporabljam v spodnjih metodah.
+    //Definiram nov CardLayout in JPanel. Konstruktor prejme ta dva objekta iz Aplikacije, ki ga nato enačim s tem oknom. Ker ga definiram tukaj, ga lahko uporabljam v spodnjih metodah.
+    CardLayout cardLayout;
+    JPanel kartice;
 
-    public MeniZacetni(JFrame okno) {
-        this.okno = okno;
+    public MeniZacetni(CardLayout cardLayout, JPanel kartice) {
+        this.cardLayout = cardLayout;
+        this.kartice = kartice;
         ustvariMeniZacetni();
     } //konstruktor, da ga lahko uporabim v aplikaciji
 
@@ -46,26 +51,16 @@ public class MeniZacetni extends JPanel {
         add(pravila);
         add(izhodZacetni);
 
-        //Action Listeners
-        ActionListener zacniListener = new ActionListener() {
+
+        // Action listeners
+        ActionListener pokaziNaslednjoKartico = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //počistim okno
-                okno.removeAll();
-                //naredim panel z zgodbico
-                JPanel zgodbica = new JPanel();
-                JLabel zgodbicaBesedilo = new JLabel("<html>To je moja zgodbica, ki je lahko dolga in mislim, <br>da bo prikazana cela, tudi če bo v več vrsticah. Tralala, hopsasa, kje je moja zgodbica.</html>");
-                zgodbicaBesedilo.setFont(new Font("Calibri", Font.ITALIC, 25));
-                zgodbica.add(zgodbicaBesedilo);
-                //naredim panel z menijem težavnosti
-                MeniTezavnost meniTezavnost = new MeniTezavnost();
-                //dodam oba panela na okno
-                okno.add(zgodbica, BorderLayout.NORTH);
-                okno.add(meniTezavnost, BorderLayout.CENTER);
-                okno.setVisible(true);
+                cardLayout.show(kartice, Aplikacija.MENU_TEZAVNOST);
             }
         };
-        zacni.addActionListener(zacniListener);
+
+        zacni.addActionListener(pokaziNaslednjoKartico);
 
     }
 }
