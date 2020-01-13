@@ -20,6 +20,9 @@ public class MeniZacetni extends JPanel {
     MenuButton pravila = new MenuButton("Pravila igre");
     MenuButton izhodZacetni = new MenuButton("Izhod");
 
+    JLabel pravilaIgre = new JLabel("<html>Čestitke! Zajčki so te izvolili za svojo vodjo.<br>Tvoja naloga je, da jim pomagaš uresničiti zloben načrt: ZAVZETI SVET!<br>Ker se v vlogi osvajalca verjetno še ne znajdeš, lahko začneš postopoma:<br>najprej osvoji vas, nato državo, na koncu pa Zemljo. Ker ti to seveda ni<br>dovolj, lahko osvojiš še vse ostale namišljene svetove.<br><br>Cilj igre je, da celotno igralno polje preplavijo zajčki. Slediti moraš preprostemu načelu: klikneš polje, ki ga želiš razširiti ter njemu sosednje polje, ki ga želiš pogubiti. Ni nujno, da vedno najprej označiš zajčka. Če ti uspe pogubiti vse zajčke na polju, je konec igre. Ne pozabi, usoda zajčkov je v tvojih rokah!<html>");
+    JFrame pravilaIgreOkno = new JFrame();
+
     //Definiram nov CardLayout in JPanel in ju nato v konstruktorju enačim s tistima iz classa Aplikacije.
     CardLayout cardLayout;
     JPanel kartice;
@@ -69,7 +72,23 @@ public class MeniZacetni extends JPanel {
         };
         izhodZacetni.addActionListener(ugasniIgro);
 
+        ActionListener pravilaListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                PokaziPravilaIgre();
+            }
+        };
+        pravila.addActionListener(pravilaListener);
+
+    }
 
 
+    public void PokaziPravilaIgre() {
+        pravilaIgreOkno.setTitle("Zajčja prevlada! - Pravila igre");
+        pravilaIgreOkno.setSize(300, 200);
+        pravilaIgreOkno.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //TODO: zapre obe okni?
+
+        pravilaIgreOkno.add(pravilaIgre);
+        pravilaIgreOkno.setVisible(true);
     }
 }

@@ -15,6 +15,32 @@ public class IgralnaPlosca extends JPanel {
         this.k = k;
     }
 
+    public void postaviPlosco() {
+
+    }
+
+    public void beleziSteviloPotez() {
+
+    }
+
+    public void shrani() {
+
+    }
+
+    /**
+     * vzemi barvo gumba (0,0)
+     *
+     * primerjaj barvo gumba z ostalimi gumbi ("dvojni forloop" - Benjamin, 13. 1. 2020)
+     *
+     */
+    public boolean aliJeKonec() {
+        return false;
+    }
+
+    public void poteza() {
+
+    }
+
 
 
 

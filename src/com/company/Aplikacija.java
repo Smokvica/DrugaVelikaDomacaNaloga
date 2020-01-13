@@ -16,7 +16,7 @@ public class Aplikacija {
 
 
     MeniZacetni meniZacetni = new MeniZacetni(cardLayout, kartice);
-    MeniMojSvet meniMojSvet = new MeniMojSvet();
+    MeniMojSvet meniMojSvet = new MeniMojSvet(cardLayout, kartice);
     MeniMedIgro meniMedIgro = new MeniMedIgro();
     MeniTezavnost meniTezavnost = new MeniTezavnost(cardLayout, kartice);
 
