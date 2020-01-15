@@ -19,7 +19,7 @@ public class Aplikacija {
     MeniMojSvet meniMojSvet = new MeniMojSvet(cardLayout, kartice);
     MeniMedIgro meniMedIgro = new MeniMedIgro();
     MeniTezavnost meniTezavnost = new MeniTezavnost(cardLayout, kartice);
-    IgralnaPlosca igralnaPlosca = new IgralnaPlosca(10, 5, 5);
+    IgralnaPlosca igralnaPlosca = new IgralnaPlosca(4, 5, 5);
 
     public static final String MENI_TEZAVNOST = "Meni težavnost";
     public static final String MENI_ZACETNI = "Meni začetni";
