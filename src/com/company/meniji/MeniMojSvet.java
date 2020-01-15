@@ -15,7 +15,7 @@ import java.text.spi.NumberFormatProvider;
 public class MeniMojSvet extends JPanel {
     JLabel tvojSvet = new JLabel("Kakšen je tvoj svet?");
 
-    JLabel nVisina = new JLabel("Višina: "); //Todo je n res višina in m širina
+    JLabel nVisina = new JLabel("Višina: ");
     JLabel mSirina = new JLabel("Širina: ");
     JLabel kPridelki = new JLabel("Število različnih pridelkov: ");
     JSpinner n;

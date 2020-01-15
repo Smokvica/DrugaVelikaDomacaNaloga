@@ -19,6 +19,7 @@ public class Aplikacija {
     MeniMojSvet meniMojSvet = new MeniMojSvet(cardLayout, kartice);
     MeniMedIgro meniMedIgro = new MeniMedIgro();
     MeniTezavnost meniTezavnost = new MeniTezavnost(cardLayout, kartice);
+    IgralnaPlosca igralnaPlosca = new IgralnaPlosca(10, 5, 5);
 
     public static final String MENI_TEZAVNOST = "Meni težavnost";
     public static final String MENI_ZACETNI = "Meni začetni";
@@ -46,11 +47,14 @@ public class Aplikacija {
 
 
         kartice.setLayout(cardLayout);
-        kartice.add(meniZacetni, MENI_ZACETNI);
-        kartice.add(meniTezavnost, MENI_TEZAVNOST);
-        kartice.add(meniMojSvet, MENI_MOJ_SVET);
+//        kartice.add(meniZacetni, MENI_ZACETNI);
+//        kartice.add(meniTezavnost, MENI_TEZAVNOST);
+//        kartice.add(meniMojSvet, MENI_MOJ_SVET);
 
+        kartice.add(igralnaPlosca, "Igralna plosca");
         okno.add(kartice);
+
+
 
         okno.setVisible(true);
 

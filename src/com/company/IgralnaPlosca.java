@@ -1,6 +1,10 @@
 package com.company;
 
+import com.company.gumbi.NumberButton;
+
 import javax.swing.*;
+import java.awt.*;
+import java.util.Random;
 
 public class IgralnaPlosca extends JPanel {
 
@@ -13,10 +17,26 @@ public class IgralnaPlosca extends JPanel {
         this.n = n;
         this.m = m;
         this.k = k;
+        postaviPlosco();
     }
+
+
 
     public void postaviPlosco() {
 
+        Random rand = new Random();
+        setLayout(new GridLayout(n, m));
+        GridListener poslusalec = new GridListener();
+        NumberButton[][] matrikaGumbov = new NumberButton[n][m];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                NumberButton igralniGumb = new NumberButton(rand.nextInt(k) + 1, i, j);
+                igralniGumb.addActionListener(poslusalec);
+                add(igralniGumb);
+                matrikaGumbov[i][j] = igralniGumb;
+            }
+        }
     }
 
     public void beleziSteviloPotez() {

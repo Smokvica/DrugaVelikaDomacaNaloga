@@ -61,6 +61,13 @@ public class MeniTezavnost extends JPanel {
             }
         };
         mojSvet.addActionListener(odpriMeniMojSvet);
+
+        ActionListener igrajVas = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+            }
+        };
     }
 
 }
