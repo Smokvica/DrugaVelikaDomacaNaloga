@@ -47,11 +47,11 @@ public class Aplikacija {
 
 
         kartice.setLayout(cardLayout);
-//        kartice.add(meniZacetni, MENI_ZACETNI);
+        kartice.add(meniZacetni, MENI_ZACETNI);
 //        kartice.add(meniTezavnost, MENI_TEZAVNOST);
 //        kartice.add(meniMojSvet, MENI_MOJ_SVET);
 
-        kartice.add(igralnaPlosca, "Igralna plosca");
+//        kartice.add(igralnaPlosca, "Igralna plosca");
         okno.add(kartice);
 
 

@@ -75,20 +75,10 @@ public class MeniZacetni extends JPanel {
         ActionListener pravilaListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                PokaziPravilaIgre();
+                JOptionPane.showMessageDialog(null, pravilaIgre, "Zajčja prevlada! - Pravila igre", JOptionPane.PLAIN_MESSAGE);
             }
         };
         pravila.addActionListener(pravilaListener);
 
-    }
-
-
-    public void PokaziPravilaIgre() {
-        pravilaIgreOkno.setTitle("Zajčja prevlada! - Pravila igre");
-        pravilaIgreOkno.setSize(300, 200);
-        pravilaIgreOkno.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //TODO: zapre obe okni?
-
-        pravilaIgreOkno.add(pravilaIgre);
-        pravilaIgreOkno.setVisible(true);
     }
 }
