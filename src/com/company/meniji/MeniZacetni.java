@@ -76,7 +76,7 @@ public class MeniZacetni extends JPanel {
         ActionListener pravilaListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, pravilaIgre, "Zajčja prevlada! - Pravila igre", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(kartice, pravilaIgre, "Zajčja prevlada! - Pravila igre", JOptionPane.PLAIN_MESSAGE);
             }
         };
         pravila.addActionListener(pravilaListener);

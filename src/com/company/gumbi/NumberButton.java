@@ -13,7 +13,7 @@ public class NumberButton extends JButton {
         this.barva = barva;
         this.i = i;
         this.j = j;
-
+//      TODO  dodajIcon();
         setText(Integer.toString(barva));
     }
 
@@ -24,7 +24,10 @@ public class NumberButton extends JButton {
         setText(Integer.toString(novaBarva));
     }
 
-
+    public void dodajIcon() {
+//        TODO Icon buca = new ImageIcon(this.getClass().getResource("Slikice/buca.jpg"));
+//        setIcon(buca);
+    }
 
     //Getters & setters
     public int getBarva() {

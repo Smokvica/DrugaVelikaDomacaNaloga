@@ -20,10 +20,15 @@ public class GridListener implements ActionListener {
     int n;
     int m;
 
-    public GridListener(NumberButton[][] matrikaGumbov, int n, int m) {
+    CardLayout cardLayout;
+    JPanel kartice;
+
+    public GridListener(NumberButton[][] matrikaGumbov, int n, int m, CardLayout cardLayout, JPanel kartice) {
         this.matrikaGumbov = matrikaGumbov;
         this.n = n;
         this.m = m;
+        this.cardLayout = cardLayout;
+        this.kartice = kartice;
     }
 
     @Override
@@ -34,6 +39,7 @@ public class GridListener implements ActionListener {
             System.out.println("Prvi clicked");
         } else if (prvi != null && drugi == null) {
             drugi = clicked;
+
 
 
             //koda TODO
@@ -54,7 +60,7 @@ public class GridListener implements ActionListener {
             // prebarvaj
             //označi, da si prebarvan
 
-
+            //TODO if(aliJeKonec()) {konecIgre()}
 
             prvi = null;
             drugi = null;
@@ -111,12 +117,17 @@ public class GridListener implements ActionListener {
     }
 
     public void konecIgre() {
-        // cardlayout, kartice TODO v konstruktor
         if(aliJeKonec()) {
-            JOptionPane.showMessageDialog(null, "<html>Bravo, uspelo ti je! Zajčki so se s tvojo pomočjo pridno namnožili!<br><br>Število potez: " + steviloPotez+"<html>", "Zmaga!", JOptionPane.PLAIN_MESSAGE);
+            int a = JOptionPane.showOptionDialog(kartice, "<html>Bravo, uspelo ti je! Zajčki so se s tvojo pomočjo pridno namnožili!<br><br>Število potez: " + steviloPotez+"<html>", "Zmaga!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
+            if (a == 0 || a == -1) {
+                cardLayout.show(kartice, Konstante.MENI_ZACETNI);
+            }
         }
         if(!aliJeKonec()) {
-            JOptionPane.showMessageDialog(null, "<html>O, ne! Zajčki so pod tvojim poveljem pomrli!<br><br>Ubil si jih v toliko potezah: " + steviloPotez+"<html>", "Zmaga!", JOptionPane.PLAIN_MESSAGE);
+            int a = JOptionPane.showOptionDialog(kartice, "<html>O, ne! Zajčki so pod tvojim poveljem pomrli!<br><br>Ubil si jih v toliko potezah: " + steviloPotez+"<html>", "Poraz!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
+            if (a == 0 || a == -1) {
+                cardLayout.show(kartice, Konstante.MENI_ZACETNI);
+            }
         }
     }
 }

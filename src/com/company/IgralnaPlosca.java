@@ -43,7 +43,7 @@ public class IgralnaPlosca extends JPanel {
         Random rand = new Random();
         setLayout(new GridLayout(n, m));
         matrikaGumbov = new NumberButton[n][m];
-        GridListener poslusalec = new GridListener(matrikaGumbov, n, m);
+        GridListener poslusalec = new GridListener(matrikaGumbov, n, m, cardLayout, kartice);
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
