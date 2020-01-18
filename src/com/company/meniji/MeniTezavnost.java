@@ -1,6 +1,8 @@
 package com.company.meniji;
 
 import com.company.Aplikacija;
+import com.company.IgralnaPlosca;
+import com.company.Konstante;
 import com.company.gumbi.MenuButton;
 
 import javax.swing.*;
@@ -20,10 +22,12 @@ public class MeniTezavnost extends JPanel {
 
     CardLayout cardLayout;
     JPanel kartice;
+    JFrame okno;
 
-    public MeniTezavnost(CardLayout cardLayout, JPanel kartice) {
+    public MeniTezavnost(CardLayout cardLayout, JPanel kartice, JFrame okno) {
         this.cardLayout = cardLayout;
         this.kartice = kartice;
+        this.okno = okno;
         ustvariMeniTezavnost();
     }
 
@@ -45,11 +49,13 @@ public class MeniTezavnost extends JPanel {
         add(mojSvet);
         add(nazajTezavnost);
 
+
         //Action Listeners
+
         ActionListener nazajMeniZacetni = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                cardLayout.show(kartice, Aplikacija.MENI_ZACETNI);
+                cardLayout.show(kartice, Konstante.MENI_ZACETNI);
             }
         };
         nazajTezavnost.addActionListener(nazajMeniZacetni);
@@ -57,7 +63,7 @@ public class MeniTezavnost extends JPanel {
         ActionListener odpriMeniMojSvet = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                cardLayout.show(kartice, Aplikacija.MENI_MOJ_SVET);
+                cardLayout.show(kartice, Konstante.MENI_MOJ_SVET);
             }
         };
         mojSvet.addActionListener(odpriMeniMojSvet);
@@ -65,9 +71,31 @@ public class MeniTezavnost extends JPanel {
         ActionListener igrajVas = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                IgralnaPlosca igralnaPloscaVas = new IgralnaPlosca(5, 5, 3, cardLayout, kartice, okno, Konstante.MENI_TEZAVNOST);
+                kartice.add(igralnaPloscaVas, Konstante.IGRALNA_PLOSCA_VAS);
+                cardLayout.show(kartice, Konstante.IGRALNA_PLOSCA_VAS);
             }
         };
-    }
+        vas.addActionListener(igrajVas);
 
+        ActionListener igrajDrzava = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                IgralnaPlosca igralnaPloscaDrzava = new IgralnaPlosca(9, 9, 7, cardLayout, kartice, okno, Konstante.MENI_TEZAVNOST);
+                kartice.add(igralnaPloscaDrzava, Konstante.IGRALNA_PLOSCA_DRZAVA);
+                cardLayout.show(kartice, Konstante.IGRALNA_PLOSCA_DRZAVA);
+            }
+        };
+        drzava.addActionListener(igrajDrzava);
+
+        ActionListener igrajPlanet = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                IgralnaPlosca igralnaPloscaPlanet = new IgralnaPlosca(30, 30, 10, cardLayout, kartice, okno, Konstante.MENI_TEZAVNOST);
+                kartice.add(igralnaPloscaPlanet, Konstante.IGRALNA_PLOSCA_PLANET);
+                cardLayout.show(kartice, Konstante.IGRALNA_PLOSCA_PLANET);
+            }
+        };
+        planet.addActionListener(igrajPlanet);
+    }
 }

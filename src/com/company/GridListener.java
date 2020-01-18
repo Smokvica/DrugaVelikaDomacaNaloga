@@ -2,6 +2,8 @@ package com.company;
 
 import com.company.gumbi.NumberButton;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ public class GridListener implements ActionListener {
     NumberButton prvi;
     NumberButton drugi;
     int staraBarva; //da iščem sosede po stari barvi in ne po ravno spremenjeni
+    int steviloPotez = 0;
+
     NumberButton[][] matrikaGumbov;
     int n;
     int m;
@@ -30,7 +34,7 @@ public class GridListener implements ActionListener {
             System.out.println("Prvi clicked");
         } else if (prvi != null && drugi == null) {
             drugi = clicked;
-            System.out.println("Drugi clicked");
+
 
             //koda TODO
             // preveri, če je sosed prvemu
@@ -41,6 +45,8 @@ public class GridListener implements ActionListener {
                         drugi.spremeniBarvo(prvi.getBarva());
                         pobarvajOstale(drugi);
                         resetirajBool();
+                        steviloPotez++;
+                        System.out.println("Drugi clicked" + steviloPotez);
                     }
                 }
             }
@@ -100,4 +106,17 @@ public class GridListener implements ActionListener {
         }
     }
 
+    public boolean aliJeKonec() {
+        return false;
+    }
+
+    public void konecIgre() {
+        // cardlayout, kartice TODO v konstruktor
+        if(aliJeKonec()) {
+            JOptionPane.showMessageDialog(null, "<html>Bravo, uspelo ti je! Zajčki so se s tvojo pomočjo pridno namnožili!<br><br>Število potez: " + steviloPotez+"<html>", "Zmaga!", JOptionPane.PLAIN_MESSAGE);
+        }
+        if(!aliJeKonec()) {
+            JOptionPane.showMessageDialog(null, "<html>O, ne! Zajčki so pod tvojim poveljem pomrli!<br><br>Ubil si jih v toliko potezah: " + steviloPotez+"<html>", "Zmaga!", JOptionPane.PLAIN_MESSAGE);
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.gumbi.NumberButton;
+import com.company.meniji.MeniMedIgro;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,12 +13,27 @@ public class IgralnaPlosca extends JPanel {
     private int m;
     private int k;
 
+
+    //Za meni med igro
+    CardLayout cardLayout;
+    JPanel kartice;
+    JFrame okno;
+    String nazajNaMeni; //da lahko grem iz igre nazaj na pravi meni, ko kliknem nazaj na menubar
+
+    //Za shrani
+    NumberButton[][] matrikaGumbov;
+
     //Konstruktor
-    public IgralnaPlosca(int n, int m, int k) {
+    public IgralnaPlosca(int n, int m, int k, CardLayout cardLayout, JPanel kartice, JFrame okno, String nazajNaMeni) {
         this.n = n;
         this.m = m;
         this.k = k;
+        this.cardLayout = cardLayout;
+        this.kartice = kartice;
+        this.okno = okno;
+        this.nazajNaMeni = nazajNaMeni;
         postaviPlosco();
+        dodajMeniMedIgro();
     }
 
 
@@ -26,7 +42,7 @@ public class IgralnaPlosca extends JPanel {
 
         Random rand = new Random();
         setLayout(new GridLayout(n, m));
-        NumberButton[][] matrikaGumbov = new NumberButton[n][m];
+        matrikaGumbov = new NumberButton[n][m];
         GridListener poslusalec = new GridListener(matrikaGumbov, n, m);
 
         for (int i = 0; i < n; i++) {
@@ -39,25 +55,12 @@ public class IgralnaPlosca extends JPanel {
         }
     }
 
+    public void dodajMeniMedIgro() {
+        MeniMedIgro meniMedIgro = new MeniMedIgro(cardLayout, kartice, okno, nazajNaMeni);
+        okno.setJMenuBar(meniMedIgro);
+    }
+
     public void beleziSteviloPotez() {
-
-    }
-
-    public void shrani() {
-
-    }
-
-    /**
-     * vzemi barvo gumba (0,0)
-     *
-     * primerjaj barvo gumba z ostalimi gumbi ("dvojni forloop" - Benjamin, 13. 1. 2020)
-     *
-     */
-    public boolean aliJeKonec() {
-        return false;
-    }
-
-    public void poteza() {
 
     }
 

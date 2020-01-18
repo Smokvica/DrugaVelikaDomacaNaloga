@@ -16,14 +16,13 @@ public class Aplikacija {
 
 
     MeniZacetni meniZacetni = new MeniZacetni(cardLayout, kartice);
-    MeniMojSvet meniMojSvet = new MeniMojSvet(cardLayout, kartice);
-    MeniMedIgro meniMedIgro = new MeniMedIgro();
-    MeniTezavnost meniTezavnost = new MeniTezavnost(cardLayout, kartice);
-    IgralnaPlosca igralnaPlosca = new IgralnaPlosca(4, 5, 5);
+    MeniMojSvet meniMojSvet = new MeniMojSvet(cardLayout, kartice, okno);
+    MeniTezavnost meniTezavnost = new MeniTezavnost(cardLayout, kartice, okno);
 
-    public static final String MENI_TEZAVNOST = "Meni težavnost";
-    public static final String MENI_ZACETNI = "Meni začetni";
-    public  static final String MENI_MOJ_SVET = "Meni moj svet";
+
+
+
+
 
     public void zazeni() {
 
@@ -47,16 +46,17 @@ public class Aplikacija {
 
 
         kartice.setLayout(cardLayout);
-        kartice.add(meniZacetni, MENI_ZACETNI);
-//        kartice.add(meniTezavnost, MENI_TEZAVNOST);
-//        kartice.add(meniMojSvet, MENI_MOJ_SVET);
 
-//        kartice.add(igralnaPlosca, "Igralna plosca");
+        kartice.add(meniZacetni, Konstante.MENI_ZACETNI);
+        kartice.add(meniTezavnost, Konstante.MENI_TEZAVNOST);
+        kartice.add(meniMojSvet, Konstante.MENI_MOJ_SVET);
+
+
         okno.add(kartice);
-
-
 
         okno.setVisible(true);
 
     }
+
+
 }

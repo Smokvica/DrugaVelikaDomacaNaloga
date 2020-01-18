@@ -1,6 +1,7 @@
 package com.company.meniji;
 
 import com.company.Aplikacija;
+import com.company.Konstante;
 import com.company.gumbi.MenuButton;
 
 import javax.swing.*;
@@ -59,7 +60,7 @@ public class MeniZacetni extends JPanel {
         ActionListener odpriMeniTezavnost = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                cardLayout.show(kartice, Aplikacija.MENI_TEZAVNOST);
+                cardLayout.show(kartice, Konstante.MENI_TEZAVNOST);
             }
         };
         zacni.addActionListener(odpriMeniTezavnost);

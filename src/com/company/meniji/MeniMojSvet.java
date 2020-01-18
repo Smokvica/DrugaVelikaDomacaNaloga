@@ -1,23 +1,23 @@
 package com.company.meniji;
 
 import com.company.Aplikacija;
+import com.company.IgralnaPlosca;
+import com.company.Konstante;
 import com.company.gumbi.MenuButton;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.NumberFormat;
-import java.text.spi.NumberFormatProvider;
 
 public class MeniMojSvet extends JPanel {
     JLabel tvojSvet = new JLabel("Kakšen je tvoj svet?");
 
     JLabel nVisina = new JLabel("Višina: ");
     JLabel mSirina = new JLabel("Širina: ");
-    JLabel kPridelki = new JLabel("Število različnih pridelkov: ");
+    JLabel kPridelki = new JLabel("Pridelki: ");
     JSpinner n;
     JSpinner m;
     JSpinner k;
@@ -25,27 +25,39 @@ public class MeniMojSvet extends JPanel {
     SpinnerModel modelM;
     SpinnerModel modelK;
 
-    MenuButton zacniCustom = new MenuButton("Igraj!"); //TODO action listener
+    MenuButton zacniMojSvet = new MenuButton("Igraj!");
     MenuButton nazajMojSvet = new MenuButton("Nazaj");
+
+    JPanel parametri = new JPanel();
+    JPanel spodnjaGumba = new JPanel();
 
     CardLayout cardLayout;
     JPanel kartice;
+    JFrame okno; //da lahko dam meni med igro na okno, ko pritisnem gumb igraj
 
-    public MeniMojSvet(CardLayout cardLayout, JPanel kartice) {
+
+    public MeniMojSvet(CardLayout cardLayout, JPanel kartice, JFrame okno) {
         this.cardLayout = cardLayout;
         this.kartice = kartice;
+        this.okno = okno;
         ustvariMeniMojSvet();
     }
 
     public void ustvariMeniMojSvet() {
 
         //Uredim layout in robove (do kam so lahko gumbi, labels ipd.)
-        setLayout(new GridLayout(0, 2, 0, 30));
+        setLayout(new GridLayout(0,1,0, 90));
         setBorder(new EmptyBorder(10, 200, 30, 200));
+        parametri.setLayout(new GridLayout(3, 2, 50, 20));
+        spodnjaGumba.setLayout(new GridLayout(0,1, 0, 30));
 
         //Uredim besedilo
         tvojSvet.setHorizontalAlignment(SwingConstants.CENTER);
+        tvojSvet.setVerticalAlignment(SwingConstants.CENTER);
         tvojSvet.setFont(new Font("Calibri", Font.BOLD, 30));
+        nVisina.setFont(new Font("Calibri", Font.PLAIN, 20));
+        mSirina.setFont(new Font("Calibri", Font.PLAIN, 20));
+        kPridelki.setFont(new Font("Calibri", Font.PLAIN, 20));
 
 
         //Naredim Spinners
@@ -65,23 +77,40 @@ public class MeniMojSvet extends JPanel {
                 n.setValue(10);
                 m.setValue(10);
                 k.setValue(5);
-                cardLayout.show(kartice, Aplikacija.MENI_TEZAVNOST);
+                cardLayout.show(kartice, Konstante.MENI_TEZAVNOST);
             }
         };
         nazajMojSvet.addActionListener(nazajMeniTezavnost);
 
+        ActionListener igrajMojSvet = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+                int novN = (Integer)n.getValue();
+                int novM = (Integer)m.getValue();
+                int novK = (Integer)k.getValue();
+                IgralnaPlosca igralnaPloscaMojSvet = new IgralnaPlosca(novN, novM, novK, cardLayout, kartice, okno, Konstante.MENI_MOJ_SVET);
+                kartice.add(igralnaPloscaMojSvet, Konstante.IGRALNA_PLOSCA_MOJ_SVET);
+
+                cardLayout.show(kartice, Konstante.IGRALNA_PLOSCA_MOJ_SVET);
+            }
+        };
+        zacniMojSvet.addActionListener(igrajMojSvet);
+
 
 
         //Dodam elemente na panel
-        add(tvojSvet);
-        add(nVisina);
-        add(mSirina);
-        add(kPridelki);
-        add(n);
-        add(m);
-        add(k);
-        add(zacniCustom);
-        add(nazajMojSvet);
 
+        add(tvojSvet);
+        parametri.add(nVisina);
+        parametri.add(n);
+        parametri.add(mSirina);
+        parametri.add(m);
+        parametri.add(kPridelki);
+        parametri.add(k);
+        add(parametri);
+        spodnjaGumba.add(zacniMojSvet);
+        spodnjaGumba.add(nazajMojSvet);
+        add(spodnjaGumba);
     }
 }
