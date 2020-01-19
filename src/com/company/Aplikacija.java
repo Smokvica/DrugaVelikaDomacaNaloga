@@ -14,9 +14,10 @@ public class Aplikacija {
     CardLayout cardLayout = new CardLayout(); //posebej
 
 
-    MeniZacetni meniZacetni = new MeniZacetni(cardLayout, kartice);
+    MeniZacetni meniZacetni = new MeniZacetni(cardLayout, kartice, okno);
     MeniMojSvet meniMojSvet = new MeniMojSvet(cardLayout, kartice, okno);
     MeniTezavnost meniTezavnost = new MeniTezavnost(cardLayout, kartice, okno);
+
 
 
     public void zazeni() {

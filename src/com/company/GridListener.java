@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -14,7 +15,8 @@ public class GridListener implements ActionListener {
     NumberButton prvi;
     NumberButton drugi;
     int staraBarva; //da iščem sosede po stari barvi in ne po ravno spremenjeni
-    int steviloPotez;
+
+    IgralnaPlosca plosca; //da lahko spreminjam counter za število potez z get in set
 
     NumberButton[][] matrikaGumbov;
     int n;
@@ -24,14 +26,14 @@ public class GridListener implements ActionListener {
     JPanel kartice;
     JFrame okno;
 
-    public GridListener(NumberButton[][] matrikaGumbov, int n, int m, CardLayout cardLayout, JPanel kartice, JFrame okno, int steviloPotez) {
+    public GridListener(NumberButton[][] matrikaGumbov, int n, int m, CardLayout cardLayout, JPanel kartice, JFrame okno, IgralnaPlosca plosca) {
         this.matrikaGumbov = matrikaGumbov;
         this.n = n;
         this.m = m;
         this.cardLayout = cardLayout;
         this.kartice = kartice;
         this.okno = okno;
-        this.steviloPotez = steviloPotez;
+        this.plosca = plosca;
     }
 
     @Override
@@ -54,7 +56,7 @@ public class GridListener implements ActionListener {
 
                         resetirajBool();
 
-                        steviloPotez++;
+                        plosca.setSteviloPotez(plosca.getSteviloPotez() + 1);
 
                         aliJeKonec();
                     }
@@ -129,17 +131,19 @@ public class GridListener implements ActionListener {
 
     public void konecIgre(int kolikoZajckov) {
         if (kolikoZajckov == (n * m)) {
-            int a = JOptionPane.showOptionDialog(kartice, "<html>Bravo, uspelo ti je! Zajčki so se s tvojo pomočjo pridno namnožili!<br><br>Število potez: " + steviloPotez+"<html>", "Zmaga!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
+            int a = JOptionPane.showOptionDialog(kartice, "<html>Bravo, uspelo ti je! Zajčki so se s tvojo pomočjo pridno namnožili!<br><br>Število potez: " + plosca.getSteviloPotez()+"<html>", "Zmaga!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
             if (a == 0 || a == -1) {
                 okno.setJMenuBar(null);
                 cardLayout.show(kartice, Konstante.MENI_ZACETNI);
             }
         } else if (kolikoZajckov == 0) {
-            int a = JOptionPane.showOptionDialog(kartice, "<html>O, ne! Zajčki so pod tvojim poveljem izumrli!<br><br>Ubil si jih v toliko potezah: " + steviloPotez+"<html>", "Poraz!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
+            int a = JOptionPane.showOptionDialog(kartice, "<html>O, ne! Zajčki so pod tvojim poveljem izumrli!<br><br>Ubil si jih v toliko potezah: " + plosca.getSteviloPotez()+"<html>", "Poraz!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
             if (a == 0 || a == -1) {
                 okno.setJMenuBar(null);
                 cardLayout.show(kartice, Konstante.MENI_ZACETNI);
             }
         }
+        File file = new File("ShranjenaIgra.txt");
+        file.delete();
     }
 }

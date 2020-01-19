@@ -8,4 +8,5 @@ public class Konstante {
     public static final String IGRALNA_PLOSCA_DRZAVA = "Igralna plošča država";
     public static final String IGRALNA_PLOSCA_PLANET = "Igralna plošča planet";
     public static final String IGRALNA_PLOSCA_MOJ_SVET = "Igralna plošča moj svet";
+    public static final String SHRANJENA_IGRALNA_PLOSCA = "Shranjena igralna plošča";
 }

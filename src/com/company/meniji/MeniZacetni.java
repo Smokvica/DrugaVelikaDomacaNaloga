@@ -1,6 +1,7 @@
 package com.company.meniji;
 
 import com.company.Aplikacija;
+import com.company.IgralnaPlosca;
 import com.company.Konstante;
 import com.company.gumbi.MenuButton;
 
@@ -9,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class MeniZacetni extends JPanel {
 
@@ -26,9 +28,13 @@ public class MeniZacetni extends JPanel {
     CardLayout cardLayout;
     JPanel kartice;
 
-    public MeniZacetni(CardLayout cardLayout, JPanel kartice) {
+    JFrame okno;
+
+
+    public MeniZacetni(CardLayout cardLayout, JPanel kartice, JFrame okno) {
         this.cardLayout = cardLayout;
         this.kartice = kartice;
+        this.okno = okno;
         ustvariMeniZacetni();
     } //konstruktor, da ta class lahko uporabim v Aplikaciji; prejme cardlayout in panel, da ju lahko uporabljam v spodnji metodi
 
@@ -77,5 +83,18 @@ public class MeniZacetni extends JPanel {
             }
         };
         pravila.addActionListener(pravilaListener);
+
+        ActionListener nadaljujListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                File file = new File("ShranjenaIgra.txt");
+                if (file.exists()) {
+                    IgralnaPlosca shranjenaIgralnaPlosca = new IgralnaPlosca(cardLayout, kartice, okno);
+                    kartice.add(shranjenaIgralnaPlosca, Konstante.SHRANJENA_IGRALNA_PLOSCA);
+                    cardLayout.show(kartice, Konstante.SHRANJENA_IGRALNA_PLOSCA);
+                }
+            }
+        };
+        nadaljuj.addActionListener(nadaljujListener);
     }
 }
