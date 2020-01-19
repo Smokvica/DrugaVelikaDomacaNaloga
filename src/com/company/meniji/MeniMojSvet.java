@@ -4,6 +4,7 @@ import com.company.Aplikacija;
 import com.company.IgralnaPlosca;
 import com.company.Konstante;
 import com.company.gumbi.MenuButton;
+import com.company.gumbi.NumberButton;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -35,6 +36,8 @@ public class MeniMojSvet extends JPanel {
     JPanel kartice;
     JFrame okno; //da lahko dam meni med igro na okno, ko pritisnem gumb igraj
 
+//    TODO NumberButton[][] matrikaGumbov; //da lahko naredim, da bo zagotovo vsaj en gumb v custom svetu zajček (včasih ga pri majhnem polju pogosto ni bilo)
+
 
     public MeniMojSvet(CardLayout cardLayout, JPanel kartice, JFrame okno) {
         this.cardLayout = cardLayout;
@@ -63,7 +66,7 @@ public class MeniMojSvet extends JPanel {
         //Naredim Spinners
         modelN = new SpinnerNumberModel(10, 2, 49, 1);
         modelM = new SpinnerNumberModel(10, 2, 49, 1);
-        modelK = new SpinnerNumberModel(5, 2, 49, 1);
+        modelK = new SpinnerNumberModel(5, 2, 20, 1);
         n = new JSpinner(modelN);
         m = new JSpinner(modelM);
         k = new JSpinner(modelK);
@@ -89,10 +92,15 @@ public class MeniMojSvet extends JPanel {
                 int novN = (Integer)n.getValue();
                 int novM = (Integer)m.getValue();
                 int novK = (Integer)k.getValue();
-                IgralnaPlosca igralnaPloscaMojSvet = new IgralnaPlosca(novN, novM, novK, cardLayout, kartice, okno, Konstante.MENI_MOJ_SVET);
-                kartice.add(igralnaPloscaMojSvet, Konstante.IGRALNA_PLOSCA_MOJ_SVET);
+                if (novK <= (novN * novM)) {
+                    IgralnaPlosca igralnaPloscaMojSvet = new IgralnaPlosca(novN, novM, novK, cardLayout, kartice, okno, Konstante.MENI_MOJ_SVET);
+//                    TODO igralnaPloscaMojSvet.getMatrikaGumbov();
+                    kartice.add(igralnaPloscaMojSvet, Konstante.IGRALNA_PLOSCA_MOJ_SVET);
+                    cardLayout.show(kartice, Konstante.IGRALNA_PLOSCA_MOJ_SVET);
+                } else {
+                    JOptionPane.showMessageDialog(kartice, "Število pridelkov je previsoko za tvoj svet.", "Ne bo šlo.", JOptionPane.PLAIN_MESSAGE);
+                }
 
-                cardLayout.show(kartice, Konstante.IGRALNA_PLOSCA_MOJ_SVET);
             }
         };
         zacniMojSvet.addActionListener(igrajMojSvet);

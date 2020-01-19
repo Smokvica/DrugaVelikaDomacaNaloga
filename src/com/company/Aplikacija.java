@@ -20,10 +20,6 @@ public class Aplikacija {
     MeniTezavnost meniTezavnost = new MeniTezavnost(cardLayout, kartice, okno);
 
 
-
-
-
-
     public void zazeni() {
 
         //Lastnosti okna
@@ -37,12 +33,8 @@ public class Aplikacija {
         kartice.add(meniTezavnost, Konstante.MENI_TEZAVNOST);
         kartice.add(meniMojSvet, Konstante.MENI_MOJ_SVET);
 
-
         okno.add(kartice);
 
         okno.setVisible(true);
-
     }
-
-
 }

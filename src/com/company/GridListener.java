@@ -22,46 +22,44 @@ public class GridListener implements ActionListener {
 
     CardLayout cardLayout;
     JPanel kartice;
+    JFrame okno;
 
-    public GridListener(NumberButton[][] matrikaGumbov, int n, int m, CardLayout cardLayout, JPanel kartice) {
+    public GridListener(NumberButton[][] matrikaGumbov, int n, int m, CardLayout cardLayout, JPanel kartice, JFrame okno) {
         this.matrikaGumbov = matrikaGumbov;
         this.n = n;
         this.m = m;
         this.cardLayout = cardLayout;
         this.kartice = kartice;
+        this.okno = okno;
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
+
         NumberButton clicked = (NumberButton)actionEvent.getSource();
         if (prvi == null && drugi == null) {
             prvi = clicked;
-            System.out.println("Prvi clicked");
         } else if (prvi != null && drugi == null) {
             drugi = clicked;
 
-
-
-            //koda TODO
-            // preveri, če je sosed prvemu
+            // preveri, če je sosed prvemu & ali je drugačne barve --> če ja, se prebarva, označi da je prebarvan in gre naprej barvat ostale
             if (drugi.getI() == prvi.getI() || drugi.getJ() == prvi.getJ()) {
                 if(drugi.getI() == prvi.getI() - 1 || drugi.getI() == prvi.getI() + 1 || drugi.getJ() == prvi.getJ() - 1 || drugi.getJ() == prvi.getJ() + 1) {
                     if(drugi.getBarva() != prvi.getBarva()) {
                         staraBarva = drugi.getBarva();
                         drugi.spremeniBarvo(prvi.getBarva());
                         pobarvajOstale(drugi);
+
                         resetirajBool();
+
                         steviloPotez++;
-                        System.out.println("Drugi clicked" + steviloPotez);
+
+                        aliJeKonec();
                     }
                 }
             }
-            // ali je drugačne barve
-            // prebarvaj
-            //označi, da si prebarvan
 
-            //TODO if(aliJeKonec()) {konecIgre()}
-
+            //Resetiram
             prvi = null;
             drugi = null;
         }
@@ -112,20 +110,33 @@ public class GridListener implements ActionListener {
         }
     }
 
-    public boolean aliJeKonec() {
-        return false;
-    }
+    public void aliJeKonec() {
+        int steviloZajckovNaPlosci = 0;
 
-    public void konecIgre() {
-        if(aliJeKonec()) {
-            int a = JOptionPane.showOptionDialog(kartice, "<html>Bravo, uspelo ti je! Zajčki so se s tvojo pomočjo pridno namnožili!<br><br>Število potez: " + steviloPotez+"<html>", "Zmaga!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
-            if (a == 0 || a == -1) {
-                cardLayout.show(kartice, Konstante.MENI_ZACETNI);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (matrikaGumbov[i][j].getBarva() == 1) {
+                    steviloZajckovNaPlosci++;
+                }
             }
         }
-        if(!aliJeKonec()) {
+
+        if (steviloZajckovNaPlosci == (n * m) || steviloZajckovNaPlosci == 0){
+            konecIgre(steviloZajckovNaPlosci);
+        }
+    }
+
+    public void konecIgre(int kolikoZajckov) {
+        if (kolikoZajckov == (n * m)) {
+            int a = JOptionPane.showOptionDialog(kartice, "<html>Bravo, uspelo ti je! Zajčki so se s tvojo pomočjo pridno namnožili!<br><br>Število potez: " + steviloPotez+"<html>", "Zmaga!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
+            if (a == 0 || a == -1) {
+                okno.setJMenuBar(null);
+                cardLayout.show(kartice, Konstante.MENI_ZACETNI);
+            }
+        } else if (kolikoZajckov == 0) {
             int a = JOptionPane.showOptionDialog(kartice, "<html>O, ne! Zajčki so pod tvojim poveljem pomrli!<br><br>Ubil si jih v toliko potezah: " + steviloPotez+"<html>", "Poraz!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
             if (a == 0 || a == -1) {
+                okno.setJMenuBar(null);
                 cardLayout.show(kartice, Konstante.MENI_ZACETNI);
             }
         }

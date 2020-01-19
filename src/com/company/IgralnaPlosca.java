@@ -43,15 +43,25 @@ public class IgralnaPlosca extends JPanel {
         Random rand = new Random();
         setLayout(new GridLayout(n, m));
         matrikaGumbov = new NumberButton[n][m];
-        GridListener poslusalec = new GridListener(matrikaGumbov, n, m, cardLayout, kartice);
+        GridListener poslusalec = new GridListener(matrikaGumbov, n, m, cardLayout, kartice, okno);
 
+        int steviloZajckov = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 NumberButton igralniGumb = new NumberButton(rand.nextInt(k) + 1, i, j);
                 igralniGumb.addActionListener(poslusalec);
                 add(igralniGumb);
                 matrikaGumbov[i][j] = igralniGumb;
+                if(igralniGumb.getBarva() == 1) {
+                    steviloZajckov++;
+                }
             }
+        }
+        if(steviloZajckov == 0) {
+            NumberButton vsajEnZajcek = matrikaGumbov[rand.nextInt(n)][rand.nextInt(m)];
+            vsajEnZajcek.spremeniBarvo(1);
+            vsajEnZajcek.setPrebarvan(false);
+            System.out.println("It happened!");
         }
     }
 
@@ -60,14 +70,9 @@ public class IgralnaPlosca extends JPanel {
         okno.setJMenuBar(meniMedIgro);
     }
 
-    public void beleziSteviloPotez() {
-
-    }
-
-
-
 
     //Getters & setters
+
     public int getN() {
         return n;
     }

@@ -91,7 +91,7 @@ public class MeniTezavnost extends JPanel {
         ActionListener igrajPlanet = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                IgralnaPlosca igralnaPloscaPlanet = new IgralnaPlosca(30, 30, 10, cardLayout, kartice, okno, Konstante.MENI_TEZAVNOST);
+                IgralnaPlosca igralnaPloscaPlanet = new IgralnaPlosca(18, 18, 10, cardLayout, kartice, okno, Konstante.MENI_TEZAVNOST);
                 kartice.add(igralnaPloscaPlanet, Konstante.IGRALNA_PLOSCA_PLANET);
                 cardLayout.show(kartice, Konstante.IGRALNA_PLOSCA_PLANET);
             }

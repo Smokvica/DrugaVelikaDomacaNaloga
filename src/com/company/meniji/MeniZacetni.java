@@ -17,12 +17,10 @@ public class MeniZacetni extends JPanel {
     JLabel podnaslov = new JLabel("Pomagaj zajčkom osvojiti svet!");
     MenuButton zacni = new MenuButton("Začni igro");
     MenuButton nadaljuj = new MenuButton("Nadaljuj");
-    MenuButton lestvica = new MenuButton("Lestvica");
     MenuButton pravila = new MenuButton("Pravila igre");
     MenuButton izhodZacetni = new MenuButton("Izhod");
 
-    JLabel pravilaIgre = new JLabel("<html>Čestitke! Zajčki so te izvolili za svojo vodjo.<br>Tvoja naloga je, da jim pomagaš uresničiti zloben načrt: ZAVZETI SVET!<br>Ker se v vlogi osvajalca verjetno še ne znajdeš, lahko začneš postopoma:<br>najprej osvoji vas, nato državo, na koncu pa Zemljo. Ker ti to seveda ni<br>dovolj, lahko osvojiš še vse ostale namišljene svetove.<br><br>Cilj igre je, da celotno igralno polje preplavijo zajčki. Slediti moraš preprostemu načelu: klikneš polje, ki ga želiš razširiti ter njemu sosednje polje, ki ga želiš pogubiti. Ni nujno, da vedno najprej označiš zajčka. Če ti uspe pogubiti vse zajčke na polju, je konec igre. Ne pozabi, usoda zajčkov je v tvojih rokah!<html>");
-    JFrame pravilaIgreOkno = new JFrame();
+    JLabel pravilaIgre = new JLabel("<html>Čestitke! Zajčki so te izvolili za svojo vodjo.<br><br>Tvoja naloga je, da jim pomagaš uresničiti zloben načrt: ZAVZETI SVET!<br>Ker se v vlogi osvajalca verjetno še ne znajdeš, lahko začneš postopoma:<br>najprej osvoji vas, nato državo, na koncu pa Zemljo. Ker ti to seveda ni dovolj,<br>lahko osvojiš še vse ostale namišljene svetove.<br><br>Cilj igre je, da celotno igralno polje preplavijo zajčki. Slediti moraš preprostemu<br>načelu: klikneš polje, ki ga želiš razširiti ter njemu sosednje polje, ki ga želiš<br>spremeniti v prvo. Ni nujno, da vedno najprej označiš zajčka. Če ti uspe pobiti<br>vse zajčke na polju, je konec igre.<br><br>Ne pozabi, usoda zajčkov je v tvojih rokah!<br><br><html>");
 
     //Definiram nov CardLayout in JPanel in ju nato v konstruktorju enačim s tistima iz classa Aplikacije.
     CardLayout cardLayout;
@@ -50,7 +48,6 @@ public class MeniZacetni extends JPanel {
         add(podnaslov);
         add(zacni);
         add(nadaljuj);
-        add(lestvica);
         add(pravila);
         add(izhodZacetni);
 
