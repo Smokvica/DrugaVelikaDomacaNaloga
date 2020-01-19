@@ -77,6 +77,5 @@ public class MeniZacetni extends JPanel {
             }
         };
         pravila.addActionListener(pravilaListener);
-
     }
 }

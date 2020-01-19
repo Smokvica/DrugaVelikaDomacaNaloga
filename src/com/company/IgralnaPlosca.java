@@ -19,9 +19,10 @@ public class IgralnaPlosca extends JPanel {
     JPanel kartice;
     JFrame okno;
     String nazajNaMeni; //da lahko grem iz igre nazaj na pravi meni, ko kliknem nazaj na menubar
-
-    //Za shrani
     NumberButton[][] matrikaGumbov;
+
+    //Da lahko do tega dostopata gridlistener in meni med igro (shrani)
+    int steviloPotez = 0;
 
     //Konstruktor
     public IgralnaPlosca(int n, int m, int k, CardLayout cardLayout, JPanel kartice, JFrame okno, String nazajNaMeni) {
@@ -37,13 +38,12 @@ public class IgralnaPlosca extends JPanel {
     }
 
 
-
     public void postaviPlosco() {
 
         Random rand = new Random();
         setLayout(new GridLayout(n, m));
         matrikaGumbov = new NumberButton[n][m];
-        GridListener poslusalec = new GridListener(matrikaGumbov, n, m, cardLayout, kartice, okno);
+        GridListener poslusalec = new GridListener(matrikaGumbov, n, m, cardLayout, kartice, okno, steviloPotez);
 
         int steviloZajckov = 0;
         for (int i = 0; i < n; i++) {
@@ -66,9 +66,12 @@ public class IgralnaPlosca extends JPanel {
     }
 
     public void dodajMeniMedIgro() {
-        MeniMedIgro meniMedIgro = new MeniMedIgro(cardLayout, kartice, okno, nazajNaMeni);
+        MeniMedIgro meniMedIgro = new MeniMedIgro(cardLayout, kartice, okno, nazajNaMeni, steviloPotez, matrikaGumbov, n, m);
         okno.setJMenuBar(meniMedIgro);
     }
+
+
+
 
 
     //Getters & setters

@@ -1,6 +1,5 @@
 package com.company;
 
-import com.company.meniji.MeniMedIgro;
 import com.company.meniji.MeniMojSvet;
 import com.company.meniji.MeniTezavnost;
 import com.company.meniji.MeniZacetni;

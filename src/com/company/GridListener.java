@@ -14,7 +14,7 @@ public class GridListener implements ActionListener {
     NumberButton prvi;
     NumberButton drugi;
     int staraBarva; //da iščem sosede po stari barvi in ne po ravno spremenjeni
-    int steviloPotez = 0;
+    int steviloPotez;
 
     NumberButton[][] matrikaGumbov;
     int n;
@@ -24,18 +24,20 @@ public class GridListener implements ActionListener {
     JPanel kartice;
     JFrame okno;
 
-    public GridListener(NumberButton[][] matrikaGumbov, int n, int m, CardLayout cardLayout, JPanel kartice, JFrame okno) {
+    public GridListener(NumberButton[][] matrikaGumbov, int n, int m, CardLayout cardLayout, JPanel kartice, JFrame okno, int steviloPotez) {
         this.matrikaGumbov = matrikaGumbov;
         this.n = n;
         this.m = m;
         this.cardLayout = cardLayout;
         this.kartice = kartice;
         this.okno = okno;
+        this.steviloPotez = steviloPotez;
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
 
+        //Zazna prvi in drugi klik
         NumberButton clicked = (NumberButton)actionEvent.getSource();
         if (prvi == null && drugi == null) {
             prvi = clicked;
@@ -58,7 +60,6 @@ public class GridListener implements ActionListener {
                     }
                 }
             }
-
             //Resetiram
             prvi = null;
             drugi = null;
@@ -66,7 +67,7 @@ public class GridListener implements ActionListener {
 
     }
 
-    //vsem sosedom daj metodo: 1) ali je iste barve 2) ali še ni prebarvan 3)prebarvaj, označi da si prebarvan, vsem sosedom daj metodo
+    //vsem sosedom da metodo: 1) ali je iste barve 2) ali še ni prebarvan 3)prebarvaj, označi da si prebarvan, vsem sosedom daj metodo
     //  *pazi: lahko nima vseh sosedov
     public void pobarvajOstale(NumberButton zacetni) {
 
@@ -134,7 +135,7 @@ public class GridListener implements ActionListener {
                 cardLayout.show(kartice, Konstante.MENI_ZACETNI);
             }
         } else if (kolikoZajckov == 0) {
-            int a = JOptionPane.showOptionDialog(kartice, "<html>O, ne! Zajčki so pod tvojim poveljem pomrli!<br><br>Ubil si jih v toliko potezah: " + steviloPotez+"<html>", "Poraz!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
+            int a = JOptionPane.showOptionDialog(kartice, "<html>O, ne! Zajčki so pod tvojim poveljem izumrli!<br><br>Ubil si jih v toliko potezah: " + steviloPotez+"<html>", "Poraz!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
             if (a == 0 || a == -1) {
                 okno.setJMenuBar(null);
                 cardLayout.show(kartice, Konstante.MENI_ZACETNI);
