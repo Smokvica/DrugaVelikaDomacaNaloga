@@ -21,7 +21,6 @@ public class NumberButton extends JButton {
         dodajIcon();
     }
 
-
     public void spremeniBarvo(int novaBarva) {
         this.barva = novaBarva;
         this.setPrebarvan(true);

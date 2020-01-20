@@ -17,14 +17,14 @@ public class IgralnaPlosca extends JPanel {
 
 
     //Za meni med igro
-    CardLayout cardLayout;
-    JPanel kartice;
-    JFrame okno;
-    String nazajNaMeni; //da lahko grem iz igre nazaj na pravi meni, ko kliknem nazaj na menubar
-    NumberButton[][] matrikaGumbov;
+    private CardLayout cardLayout;
+    private JPanel kartice;
+    private JFrame okno;
+    private String nazajNaMeni; //da lahko grem iz igre nazaj na pravi meni, ko kliknem nazaj na menubar
+    private NumberButton[][] matrikaGumbov;
 
     //Da lahko do tega dostopata gridlistener in meni med igro (shrani)
-    int steviloPotez = 0;
+    private int steviloPotez = 0;
 
     //Konstruktor za novo igro
     public IgralnaPlosca(int n, int m, int k, CardLayout cardLayout, JPanel kartice, JFrame okno, String nazajNaMeni) {
@@ -50,7 +50,7 @@ public class IgralnaPlosca extends JPanel {
     }
 
 
-    public void postaviPlosco() {
+    private void postaviPlosco() {
 
         Random rand = new Random();
         setLayout(new GridLayout(n, m));
@@ -77,12 +77,12 @@ public class IgralnaPlosca extends JPanel {
         }
     }
 
-    public void dodajMeniMedIgro() {
+    private void dodajMeniMedIgro() {
         MeniMedIgro meniMedIgro = new MeniMedIgro(cardLayout, kartice, okno, nazajNaMeni, matrikaGumbov, n, m, this);
         okno.setJMenuBar(meniMedIgro);
     }
 
-    public void naloziShranjenoIgro() {
+    private void naloziShranjenoIgro() {
         Scanner reader;
         try {
             reader = new Scanner(new File("ShranjenaIgra.txt"));

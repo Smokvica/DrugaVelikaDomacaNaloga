@@ -12,19 +12,19 @@ import java.util.ArrayList;
 
 public class GridListener implements ActionListener {
 
-    NumberButton prvi;
-    NumberButton drugi;
-    int staraBarva; //da iščem sosede po stari barvi in ne po ravno spremenjeni
+    private NumberButton prvi;
+    private NumberButton drugi;
+    private int staraBarva; //da iščem sosede po stari barvi in ne po ravno spremenjeni
 
-    IgralnaPlosca plosca; //da lahko spreminjam counter za število potez z get in set
+    private IgralnaPlosca plosca; //da lahko spreminjam counter za število potez z get in set
 
-    NumberButton[][] matrikaGumbov;
-    int n;
-    int m;
+    private NumberButton[][] matrikaGumbov;
+    private int n;
+    private int m;
 
-    CardLayout cardLayout;
-    JPanel kartice;
-    JFrame okno;
+    private CardLayout cardLayout;
+    private JPanel kartice;
+    private JFrame okno;
 
     public GridListener(NumberButton[][] matrikaGumbov, int n, int m, CardLayout cardLayout, JPanel kartice, JFrame okno, IgralnaPlosca plosca) {
         this.matrikaGumbov = matrikaGumbov;
@@ -71,7 +71,7 @@ public class GridListener implements ActionListener {
 
     //vsem sosedom da metodo: 1) ali je iste barve 2) ali še ni prebarvan 3)prebarvaj, označi da si prebarvan, vsem sosedom daj metodo
     //  *pazi: lahko nima vseh sosedov
-    public void pobarvajOstale(NumberButton zacetni) {
+    private void pobarvajOstale(NumberButton zacetni) {
 
         //Polje sosednjih gumbov
         ArrayList<NumberButton> sosedje = new ArrayList<NumberButton>();
@@ -105,7 +105,7 @@ public class GridListener implements ActionListener {
 
     }
 
-    public void resetirajBool() {
+    private void resetirajBool() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 matrikaGumbov[i][j].setPrebarvan(false);
@@ -113,7 +113,7 @@ public class GridListener implements ActionListener {
         }
     }
 
-    public void aliJeKonec() {
+    private void aliJeKonec() {
         int steviloZajckovNaPlosci = 0;
 
         for (int i = 0; i < n; i++) {
@@ -129,7 +129,7 @@ public class GridListener implements ActionListener {
         }
     }
 
-    public void konecIgre(int kolikoZajckov) {
+    private void konecIgre(int kolikoZajckov) {
         if (kolikoZajckov == (n * m)) {
             int a = JOptionPane.showOptionDialog(kartice, "<html>Bravo, uspelo ti je! Zajčki so se s tvojo pomočjo pridno namnožili!<br><br>Število potez: " + plosca.getSteviloPotez()+"<html>", "Zmaga!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
             if (a == 0 || a == -1) {

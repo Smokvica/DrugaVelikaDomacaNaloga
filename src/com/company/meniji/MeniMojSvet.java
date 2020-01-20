@@ -1,43 +1,33 @@
 package com.company.meniji;
 
-import com.company.Aplikacija;
 import com.company.IgralnaPlosca;
 import com.company.Konstante;
 import com.company.gumbi.MenuButton;
-import com.company.gumbi.NumberButton;
-
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MeniMojSvet extends JPanel {
-    JLabel tvojSvet = new JLabel("Kakšen je tvoj svet?");
+    private JLabel tvojSvet = new JLabel("Kakšen je tvoj svet?");
 
-    JLabel nVisina = new JLabel("Višina: ");
-    JLabel mSirina = new JLabel("Širina: ");
-    JLabel kPridelki = new JLabel("Pridelki: ");
-    JSpinner n;
-    JSpinner m;
-    JSpinner k;
-    SpinnerModel modelN;
-    SpinnerModel modelM;
-    SpinnerModel modelK;
+    private JLabel nVisina = new JLabel("Višina: ");
+    private JLabel mSirina = new JLabel("Širina: ");
+    private JLabel kPridelki = new JLabel("Pridelki: ");
+    private JSpinner n;
+    private JSpinner m;
+    private JSpinner k;
 
-    MenuButton zacniMojSvet = new MenuButton("Igraj!");
-    MenuButton nazajMojSvet = new MenuButton("Nazaj");
+    private MenuButton zacniMojSvet = new MenuButton("Igraj!");
+    private MenuButton nazajMojSvet = new MenuButton("Nazaj");
 
-    JPanel parametri = new JPanel();
-    JPanel spodnjaGumba = new JPanel();
+    private JPanel parametri = new JPanel();
+    private JPanel spodnjaGumba = new JPanel();
 
-    CardLayout cardLayout;
-    JPanel kartice;
-    JFrame okno; //da lahko dam meni med igro na okno, ko pritisnem gumb igraj
-
-//    TODO NumberButton[][] matrikaGumbov; //da lahko naredim, da bo zagotovo vsaj en gumb v custom svetu zajček (včasih ga pri majhnem polju pogosto ni bilo)
-
+    private CardLayout cardLayout;
+    private JPanel kartice;
+    private JFrame okno; //da lahko dam meni med igro na okno, ko pritisnem gumb igraj
 
     public MeniMojSvet(CardLayout cardLayout, JPanel kartice, JFrame okno) {
         this.cardLayout = cardLayout;
@@ -46,7 +36,7 @@ public class MeniMojSvet extends JPanel {
         ustvariMeniMojSvet();
     }
 
-    public void ustvariMeniMojSvet() {
+    private void ustvariMeniMojSvet() {
 
         //Uredim layout in robove (do kam so lahko gumbi, labels ipd.)
         setLayout(new GridLayout(0,1,0, 90));
@@ -64,9 +54,9 @@ public class MeniMojSvet extends JPanel {
 
 
         //Naredim Spinners
-        modelN = new SpinnerNumberModel(10, 2, 49, 1);
-        modelM = new SpinnerNumberModel(10, 2, 49, 1);
-        modelK = new SpinnerNumberModel(5, 2, 20, 1);
+        SpinnerModel modelN = new SpinnerNumberModel(10, 2, 49, 1);
+        SpinnerModel modelM = new SpinnerNumberModel(10, 2, 49, 1);
+        SpinnerModel modelK = new SpinnerNumberModel(5, 2, 20, 1);
         n = new JSpinner(modelN);
         m = new JSpinner(modelM);
         k = new JSpinner(modelK);
@@ -88,27 +78,22 @@ public class MeniMojSvet extends JPanel {
         ActionListener igrajMojSvet = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
                 int novN = (Integer)n.getValue();
                 int novM = (Integer)m.getValue();
                 int novK = (Integer)k.getValue();
                 if (novK <= (novN * novM)) {
                     IgralnaPlosca igralnaPloscaMojSvet = new IgralnaPlosca(novN, novM, novK, cardLayout, kartice, okno, Konstante.MENI_MOJ_SVET);
-//                    TODO igralnaPloscaMojSvet.getMatrikaGumbov();
                     kartice.add(igralnaPloscaMojSvet, Konstante.IGRALNA_PLOSCA_MOJ_SVET);
                     cardLayout.show(kartice, Konstante.IGRALNA_PLOSCA_MOJ_SVET);
                 } else {
                     JOptionPane.showMessageDialog(kartice, "Število pridelkov je previsoko za tvoj svet.", "Ne bo šlo.", JOptionPane.PLAIN_MESSAGE);
                 }
-
             }
         };
         zacniMojSvet.addActionListener(igrajMojSvet);
 
 
-
         //Dodam elemente na panel
-
         add(tvojSvet);
         parametri.add(nVisina);
         parametri.add(n);

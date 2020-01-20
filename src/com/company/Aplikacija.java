@@ -9,15 +9,14 @@ import java.awt.*;
 
 public class Aplikacija {
 
-    JFrame okno = new JFrame();
-    JPanel kartice = new JPanel(); //panel, na katerega lepim ostale panels ("cards"), npr. meniji
-    CardLayout cardLayout = new CardLayout(); //posebej
+    private JFrame okno = new JFrame();
+    private JPanel kartice = new JPanel(); //panel, na katerega lepim ostale panels ("cards"), npr. meniji
+    private CardLayout cardLayout = new CardLayout(); //posebej
 
 
-    MeniZacetni meniZacetni = new MeniZacetni(cardLayout, kartice, okno);
-    MeniMojSvet meniMojSvet = new MeniMojSvet(cardLayout, kartice, okno);
-    MeniTezavnost meniTezavnost = new MeniTezavnost(cardLayout, kartice, okno);
-
+    private MeniZacetni meniZacetni = new MeniZacetni(cardLayout, kartice, okno);
+    private MeniMojSvet meniMojSvet = new MeniMojSvet(cardLayout, kartice, okno);
+    private MeniTezavnost meniTezavnost = new MeniTezavnost(cardLayout, kartice, okno);
 
 
     public void zazeni() {

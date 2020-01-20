@@ -9,7 +9,7 @@ import java.awt.image.ImageObserver;
 import java.net.URL;
 import javax.swing.ImageIcon;
 
-// Skopirano iz https://tips4java.wordpress.com/2012/03/31/stretch-icon/
+// Skopirano iz https://tips4java.wordpress.com/2012/03/31/stretch-icon/ --> da mi slikice na gumbih poveča, če povečam okno
 
 public class ResizeIcon extends ImageIcon {
     /**

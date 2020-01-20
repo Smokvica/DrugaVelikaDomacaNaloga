@@ -15,20 +15,20 @@ import java.io.File;
 public class MeniZacetni extends JPanel {
 
     //Ustvarim elemente
-    JLabel naslov = new JLabel("Zajčja prevlada!");
-    JLabel podnaslov = new JLabel("Pomagaj zajčkom osvojiti svet!");
-    MenuButton zacni = new MenuButton("Začni igro");
-    MenuButton nadaljuj = new MenuButton("Nadaljuj");
-    MenuButton pravila = new MenuButton("Pravila igre");
-    MenuButton izhodZacetni = new MenuButton("Izhod");
+    private JLabel naslov = new JLabel("Zajčja prevlada!");
+    private JLabel podnaslov = new JLabel("Pomagaj zajčkom osvojiti svet!");
+    private MenuButton zacni = new MenuButton("Začni igro");
+    private MenuButton nadaljuj = new MenuButton("Nadaljuj");
+    private MenuButton pravila = new MenuButton("Pravila igre");
+    private MenuButton izhodZacetni = new MenuButton("Izhod");
 
-    JLabel pravilaIgre = new JLabel("<html>Čestitke! Zajčki so te izvolili za svojo vodjo.<br><br>Tvoja naloga je, da jim pomagaš uresničiti zloben načrt: ZAVZETI SVET!<br>Ker se v vlogi osvajalca verjetno še ne znajdeš, lahko začneš postopoma:<br>najprej osvoji vas, nato državo, na koncu pa Zemljo. Ker ti to seveda ni dovolj,<br>lahko osvojiš še vse ostale namišljene svetove.<br><br>Cilj igre je, da celotno igralno polje preplavijo zajčki. Slediti moraš preprostemu<br>načelu: klikneš polje, ki ga želiš razširiti ter njemu sosednje polje, ki ga želiš<br>spremeniti v prvo. Ni nujno, da vedno najprej označiš zajčka. Če ti uspe pobiti<br>vse zajčke na polju, je konec igre.<br><br>Ne pozabi, usoda zajčkov je v tvojih rokah!<br><br><html>");
+    private JLabel pravilaIgre = new JLabel("<html>Čestitke! Zajčki so te izvolili za svojo vodjo.<br><br>Tvoja naloga je, da jim pomagaš uresničiti zloben načrt: ZAVZETI SVET!<br>Ker se v vlogi osvajalca verjetno še ne znajdeš, lahko začneš postopoma:<br>najprej osvoji vas, nato državo, na koncu pa Zemljo. Ker ti to seveda ni dovolj,<br>lahko osvojiš še vse ostale namišljene svetove.<br><br>Cilj igre je, da celotno igralno polje preplavijo zajčki. Slediti moraš preprostemu<br>načelu: klikneš polje, ki ga želiš razširiti ter njemu sosednje polje, ki ga želiš<br>spremeniti v prvo. Ni nujno, da vedno najprej označiš zajčka. Če ti uspe pobiti<br>vse zajčke na polju, je konec igre.<br><br>Ne pozabi, usoda zajčkov je v tvojih rokah!<br><br><html>");
 
     //Definiram nov CardLayout in JPanel in ju nato v konstruktorju enačim s tistima iz classa Aplikacije.
-    CardLayout cardLayout;
-    JPanel kartice;
+    private CardLayout cardLayout;
+    private JPanel kartice;
 
-    JFrame okno;
+    private JFrame okno;
 
 
     public MeniZacetni(CardLayout cardLayout, JPanel kartice, JFrame okno) {
@@ -87,8 +87,7 @@ public class MeniZacetni extends JPanel {
         ActionListener nadaljujListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                File file = new File("ShranjenaIgra.txt");
-                if (file.exists()) {
+                if (aliObstajaShranjenaIgra()) {
                     IgralnaPlosca shranjenaIgralnaPlosca = new IgralnaPlosca(cardLayout, kartice, okno);
                     kartice.add(shranjenaIgralnaPlosca, Konstante.SHRANJENA_IGRALNA_PLOSCA);
                     cardLayout.show(kartice, Konstante.SHRANJENA_IGRALNA_PLOSCA);
@@ -96,5 +95,16 @@ public class MeniZacetni extends JPanel {
             }
         };
         nadaljuj.addActionListener(nadaljujListener);
+    }
+
+    private boolean aliObstajaShranjenaIgra() {
+        File file = new File("ShranjenaIgra.txt");
+        if (!file.exists()) {
+//            nadaljuj.setEnabled(false);
+            return false;
+        } else {
+//            nadaljuj.setEnabled(true);
+            return true;
+        }
     }
 }

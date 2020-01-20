@@ -13,16 +13,16 @@ import java.awt.event.ActionListener;
 
 public class MeniTezavnost extends JPanel {
 
-    JLabel izberiTezavnost = new JLabel("Izberi težavnost:");
-    MenuButton vas = new MenuButton("VAS");
-    MenuButton drzava = new MenuButton("DRŽAVA");
-    MenuButton planet = new MenuButton("PLANET ZEMLJA");
-    MenuButton mojSvet = new MenuButton("MOJ SVET");
-    MenuButton nazajTezavnost = new MenuButton("Nazaj");
+    private JLabel izberiTezavnost = new JLabel("Izberi težavnost:");
+    private MenuButton vas = new MenuButton("VAS");
+    private MenuButton drzava = new MenuButton("DRŽAVA");
+    private MenuButton planet = new MenuButton("PLANET ZEMLJA");
+    private MenuButton mojSvet = new MenuButton("MOJ SVET");
+    private MenuButton nazajTezavnost = new MenuButton("Nazaj");
 
-    CardLayout cardLayout;
-    JPanel kartice;
-    JFrame okno;
+    private CardLayout cardLayout;
+    private JPanel kartice;
+    private JFrame okno;
 
     public MeniTezavnost(CardLayout cardLayout, JPanel kartice, JFrame okno) {
         this.cardLayout = cardLayout;
@@ -31,7 +31,7 @@ public class MeniTezavnost extends JPanel {
         ustvariMeniTezavnost();
     }
 
-    public void ustvariMeniTezavnost() {
+    private void ustvariMeniTezavnost() {
 
         //Uredim layout in robove (do kam so lahko gumbi, labels ipd.)
         setLayout(new GridLayout(0, 1, 0, 30));

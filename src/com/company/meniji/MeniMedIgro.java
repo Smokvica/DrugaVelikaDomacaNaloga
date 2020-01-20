@@ -14,20 +14,20 @@ import java.sql.SQLOutput;
 
 public class MeniMedIgro extends JMenuBar {
 
-    JButton nazajMedIgro = new JButton("Nazaj");
-    JButton shrani = new JButton("Shrani");
+    private JButton nazajMedIgro = new JButton("Nazaj");
+    private JButton shrani = new JButton("Shrani");
 
-    CardLayout cardLayout;
-    JPanel kartice;
-    JFrame okno;
+    private CardLayout cardLayout;
+    private JPanel kartice;
+    private JFrame okno;
 
     //Za shrani
-    NumberButton[][] matrikaGumbovZaShrani;
-    int n;
-    int m;
-    IgralnaPlosca plosca; // TODO: POČISTI konstruktorje in naredit z več get in set --> ne dela, bi mogla dat st potez v gridlistener in od tam klicat?
+    private NumberButton[][] matrikaGumbovZaShrani;
+    private int n;
+    private int m;
+    private IgralnaPlosca plosca; // da lahko dobim število potez za shrani
 
-    String nazajNaMeni; // da lahko prilagodim AL za gumb nazaj - da gre ali na MeniTezavnost ali na MeniMojSvet
+    private String nazajNaMeni; // da lahko prilagodim AL za gumb nazaj - da gre ali na MeniTezavnost ali na MeniMojSvet
 
     public MeniMedIgro(CardLayout cardLayout, JPanel kartice, JFrame okno, String nazajNaMeni, NumberButton[][] matrikaGumbovZaShrani, int n, int m, IgralnaPlosca plosca) {
         this.cardLayout = cardLayout;
@@ -41,7 +41,7 @@ public class MeniMedIgro extends JMenuBar {
         ustvariMeniMedIgro();
     }
 
-    public void ustvariMeniMedIgro() {
+    private void ustvariMeniMedIgro() {
 
         add(nazajMedIgro);
         add(shrani);
@@ -49,6 +49,7 @@ public class MeniMedIgro extends JMenuBar {
         ActionListener nazajListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+
                 if(nazajNaMeni.equals(Konstante.MENI_ZACETNI)) {
                     okno.setJMenuBar(null);
                     cardLayout.show(kartice, Konstante.MENI_ZACETNI);
@@ -72,7 +73,7 @@ public class MeniMedIgro extends JMenuBar {
         shrani.addActionListener(shraniListener);
     }
 
-    public void shraniIgro() {
+    private void shraniIgro() {
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("ShranjenaIgra.txt")));
 
